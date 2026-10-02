@@ -1,4 +1,4 @@
-package com.javatechie.us;
+package br.com.pedrosa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

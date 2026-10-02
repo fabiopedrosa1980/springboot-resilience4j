@@ -9,8 +9,7 @@ import org.springframework.web.client.RestClient;
 public class RestClientConfig {
 
     @Bean
-    public RestClient restClient(
-            @Value("${order.service.url:http://localhost:9191/orders}") String baseUrl) {
+    public RestClient restClient(@Value("${order.service.url:http://localhost:9191/orders}") String baseUrl) {
         return RestClient.builder()
                 .baseUrl(baseUrl)
                 .build();

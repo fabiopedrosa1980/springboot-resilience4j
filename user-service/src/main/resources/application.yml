@@ -1,3 +1,5 @@
+server:
+  port: 9292
 
 management:
   health:
@@ -10,7 +12,6 @@ management:
   endpoint:
     health:
       show-details: always
-
 
 resilience4j:
   circuitbreaker:
@@ -25,10 +26,6 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
-
-
-server:
-  port: 9292
 
 
 
