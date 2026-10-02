@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
-
 public class OrderController {
 
     private final OrderService orderService;
@@ -26,7 +25,8 @@ public class OrderController {
     }
 
     @GetMapping("/{category}")
-    public List<Order> getOrdersByCategory(@PathVariable String category){
+    public List<Order> getOrdersByCategory(@PathVariable String category) throws InterruptedException {
+        Thread.sleep(10000);
         return orderService.getOrdersByCategory(category);
     }
 }
