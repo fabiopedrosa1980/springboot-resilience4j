@@ -9,6 +9,7 @@ management:
     web:
       exposure:
         include: health, metrics
+
   endpoint:
     health:
       show-details: always
@@ -46,5 +47,12 @@ resilience4j:
   bulkhead:
     instances:
       userService:
-        max-concurrent-calls: 2
+        max-concurrent-calls: 3
         max-wait-duration: 0s
+
+  thread-pool-bulkhead:
+    instances:
+      userService:
+        max-thread-pool-size: 3
+        core-thread-pool-size: 1
+        queue-capacity: 0

@@ -25,9 +25,11 @@ public class OrderService {
         this.restClient = restClient;
     }
 
-    @Bulkhead(name = USER_SERVICE, fallbackMethod = "getAllAvailableProducts")
+    @Bulkhead(name = USER_SERVICE,
+            type = Bulkhead.Type.THREADPOOL,
+            fallbackMethod = "getAllAvailableProducts")
     @CircuitBreaker(name = USER_SERVICE, fallbackMethod = "getAllAvailableProducts")
-    @TimeLimiter(name = "userService")
+    @TimeLimiter(name = USER_SERVICE)
     public CompletableFuture<List<OrderDTO>> displayOrders(@RequestParam("category") String category) {
         List<OrderDTO> orders = restClient.get()
                 .uri(category == null ? "" : "/{category}", category)
