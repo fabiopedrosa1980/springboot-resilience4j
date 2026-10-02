@@ -8,12 +8,13 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, metrics
   endpoint:
     health:
       show-details: always
 
 resilience4j:
+
   circuitbreaker:
     instances:
       userService:
@@ -27,12 +28,23 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
+  ratelimiter:
+    instances:
+      userService:
+        limitForPeriod: 100
+        limitRefreshPeriod: 1s
+        timeoutDuration: 0s
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 100
 
+  timelimiter:
+    instances:
+      userService:
+        timeoutDuration: 5s
+        cancelRunningFuture: true
 
-
-
-
-
-
-
-
+  bulkhead:
+    instances:
+      userService:
+        max-concurrent-calls: 2
+        max-wait-duration: 0s
